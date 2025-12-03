@@ -9,7 +9,7 @@ import { onPopoverGroupBlur } from './on-popover-group-blur';
 
 class ElPopoverGroup extends BaseElement {
     getPopovers() {
-        return Array.from(this.querySelectorAll("* > el-popover"));
+        return Array.from(this.querySelectorAll("* > ce-popover"));
     }
 }
 
@@ -33,7 +33,7 @@ class ElPopover extends BaseElement {
         this.setAttribute("tabindex", "-1");
         let group: HTMLElement = this;
 
-        let popoverGroup: ElPopoverGroup | null = this.closest("el-popover-group");
+        let popoverGroup: ElPopoverGroup | null = this.closest("ce-popover-group");
 
         if (popoverGroup?.getPopovers().includes(this))
             group = popoverGroup;
@@ -80,5 +80,5 @@ class ElPopover extends BaseElement {
     }
 }
 
-defineCustomElement("el-popover", ElPopover);
-defineCustomElement("el-popover-group", ElPopoverGroup);
+defineCustomElement("ce-popover", ElPopover);
+defineCustomElement("ce-popover-group", ElPopoverGroup);

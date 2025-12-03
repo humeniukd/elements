@@ -25,7 +25,7 @@ export class ElCommandPalette extends BaseElement {
 
         this.#suggestions = [];
         for (let node of items.getItems()) {
-            if (node.closest("el-defaults"))
+            if (node.closest("ce-defaults"))
                 continue;
             let content = getContent(node) ?? "";
             if (query === "" || this.#filter({ query, node, content })) {
@@ -51,7 +51,7 @@ export class ElCommandPalette extends BaseElement {
             } else
                 suggestions.setAttribute("hidden", "");
         }
-        let noResultsEl = this.querySelector("el-no-results");
+        let noResultsEl = this.querySelector("ce-no-results");
         if (noResultsEl) {
             if (query === "" || this.#suggestions.length > 0)
                 noResultsEl.setAttribute("hidden", "");
@@ -79,14 +79,14 @@ export class ElCommandPalette extends BaseElement {
         }
         if (activeItem !== null) {
             activeItem.setAttribute("aria-selected", "false");
-            let a = this.querySelector(`el-command-preview[for="${activeItem.id}"]`);
+            let a = this.querySelector(`ce-command-preview[for="${activeItem.id}"]`);
             if (a) {
                 a.setAttribute("hidden", "");
             }
         }
         el.setAttribute("aria-selected", "true");
         input.setAttribute("aria-activedescendant", el.id);
-        let commandPreview = this.querySelector(`el-command-preview[for="${el.id}"]`);
+        let commandPreview = this.querySelector(`ce-command-preview[for="${el.id}"]`);
         if (commandPreview) {
             commandPreview.removeAttribute("hidden");
         }
@@ -181,20 +181,20 @@ export class ElCommandPalette extends BaseElement {
     getInput() {
         let input = this.querySelector("input");
         if (!input)
-            throw new Error("`<el-command-palette>` must contain an input element.");
+            throw new Error("`<ce-command-palette>` must contain an input element.");
         return input;
     }
     getItems(): ElCommandList {
-        let list: ElCommandList | null = this.querySelector("el-command-list");
+        let list: ElCommandList | null = this.querySelector("ce-command-list");
         if (!list)
-            throw new Error("`<el-command-palette>` must contain a `<el-command-list>` element.");
+            throw new Error("`<ce-command-palette>` must contain a `<ce-command-list>` element.");
         return list;
     }
     getGroups(): NodeListOf<ElCommandGroup>{
-        return this.getItems().querySelectorAll("el-command-group");
+        return this.getItems().querySelectorAll("ce-command-group");
     }
     getSuggestions(): ElDefaults | null {
-        return this.querySelector("el-defaults");
+        return this.querySelector("ce-defaults");
     }
     getActiveItem() {
         let active = this.getInput().getAttribute("aria-activedescendant");
@@ -213,7 +213,7 @@ export class ElCommandPalette extends BaseElement {
         let active = this.getActiveItem();
         if (active !== null) {
             active.setAttribute("aria-selected", "false");
-            let preview = this.querySelector(`el-command-preview[for="${active.id}"]`);
+            let preview = this.querySelector(`ce-command-preview[for="${active.id}"]`);
             if (preview)
                 preview.setAttribute("hidden", "");
         }
@@ -258,10 +258,10 @@ class ElCommandGroup extends BaseElement {
     }
 }
 
-defineCustomElement("el-command-palette", ElCommandPalette);
-defineCustomElement("el-command-list", ElCommandList);
-defineCustomElement("el-defaults", ElDefaults);
-defineCustomElement("el-no-results", ElNoResults);
-defineCustomElement("el-command-group", ElCommandGroup);
-defineCustomElement("el-command-preview", ElCommandPreview);
+defineCustomElement("ce-command-palette", ElCommandPalette);
+defineCustomElement("ce-command-list", ElCommandList);
+defineCustomElement("ce-defaults", ElDefaults);
+defineCustomElement("ce-no-results", ElNoResults);
+defineCustomElement("ce-command-group", ElCommandGroup);
+defineCustomElement("ce-command-preview", ElCommandPreview);
 

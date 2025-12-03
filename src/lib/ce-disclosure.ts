@@ -92,4 +92,4 @@ class ElDisclosure extends BaseElement {
     }
 }
 
-defineCustomElement("el-disclosure", ElDisclosure);
+defineCustomElement("ce-disclosure", ElDisclosure);

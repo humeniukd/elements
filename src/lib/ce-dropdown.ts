@@ -177,9 +177,9 @@ class ElMenu extends BaseElement {
         this.#search?.clearActiveItem();
     }
     getDropdown() {
-        let dropdown: ElDropdown | null = this.closest("el-dropdown");
+        let dropdown: ElDropdown | null = this.closest("ce-dropdown");
         if (!dropdown)
-            throw new Error("[ElMenu] No `<el-dropdown>` element found");
+            throw new Error("[ElMenu] No `<ce-dropdown>` element found");
         return dropdown;
     }
     getItems(): HTMLElement[] {
@@ -194,5 +194,5 @@ class ElMenu extends BaseElement {
     }
 }
 
-defineCustomElement("el-menu", ElMenu);
-defineCustomElement("el-dropdown", ElDropdown);
+defineCustomElement("ce-menu", ElMenu);
+defineCustomElement("ce-dropdown", ElDropdown);

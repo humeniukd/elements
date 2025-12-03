@@ -17,7 +17,7 @@
           </svg>
         </button>
 
-        <el-popover id="desktop-menu-solutions" anchor="bottom" popover="" data-default-open="" class="w-screen max-w-max overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in" tabindex="-1" open="" aria-labelledby="popover-button-0" style="left: calc(39px + var(--anchor-offset, 0px)); top: calc(56.5px + var(--anchor-gap, 0px)); position: absolute; --button-width: 87.25px;">
+        <ce-popover id="desktop-menu-solutions" anchor="bottom" popover="" data-default-open="" class="w-screen max-w-max overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in" tabindex="-1" open="" aria-labelledby="popover-button-0" style="left: calc(39px + var(--anchor-offset, 0px)); top: calc(56.5px + var(--anchor-gap, 0px)); position: absolute; --button-width: 87.25px;">
           <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 shadow-lg outline-1 outline-gray-900/5 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
             <div class="p-4">
               <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
@@ -107,14 +107,14 @@
               </a>
             </div>
           </div>
-        </el-popover>
+        </ce-popover>
       </div>
     </div>
   </div>
   <script>
     {
-      let popovers = document.querySelectorAll('el-popover[data-default-open]')
-      if (customElements.get('el-popover')) {
+      let popovers = document.querySelectorAll('ce-popover[data-default-open]')
+      if (customElements.get('ce-popover')) {
         popovers.forEach((popover) => popover.showPopover())
       } else {
         window.addEventListener('elements:ready', () => popovers.forEach((popover) => popover.showPopover()))

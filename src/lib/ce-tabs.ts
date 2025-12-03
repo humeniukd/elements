@@ -75,7 +75,7 @@ class ElTabGroup extends BaseElement {
             }, { signal });
     }
     getActiveTab(): number {
-        let tabPanels: ElTabPanels | null = this.querySelector("el-tab-panels");
+        let tabPanels: ElTabPanels | null = this.querySelector("ce-tab-panels");
         let panel = tabPanels?.getPanels().find(el => !el.hasAttribute("hidden"));
         if (panel)
             return tabPanels!.getPanels().indexOf(panel);
@@ -83,15 +83,15 @@ class ElTabGroup extends BaseElement {
             return -1;
     }
     getList(): ElTabList {
-        let tabList: ElTabList | null = this.querySelector("el-tab-list");
+        let tabList: ElTabList | null = this.querySelector("ce-tab-list");
         if (!tabList)
-            throw new Error("[ElTabGroup] No `<el-tab-list>` element found");
+            throw new Error("[ElTabGroup] No `<ce-tab-list>` element found");
         return tabList;
     }
     getPanels(): ElTabPanels {
-        let tabPanels: ElTabPanels | null = this.querySelector("el-tab-panels");
+        let tabPanels: ElTabPanels | null = this.querySelector("ce-tab-panels");
         if (!tabPanels)
-            throw new Error("[ElTabGroup] No `<el-tab-panels>` element found");
+            throw new Error("[ElTabGroup] No `<ce-tab-panels>` element found");
         return tabPanels;
     }
     setActiveTab(idx: number) {
@@ -151,9 +151,9 @@ class ElTabPanels extends BaseElement {
         }
     }
     getTabGroup() {
-        let tabGroup: ElTabGroup | null = this.closest("el-tab-group");
+        let tabGroup: ElTabGroup | null = this.closest("ce-tab-group");
         if (!tabGroup)
-            throw new Error("`<el-tab-panels>` must be inside a `<el-tab-group>` element.");
+            throw new Error("`<ce-tab-panels>` must be inside a `<ce-tab-group>` element.");
         return tabGroup;
     }
     getPanels(): Element[] {
@@ -166,6 +166,6 @@ class ElTabPanels extends BaseElement {
     }
 }
 
-defineCustomElement("el-tab-list", ElTabList);
-defineCustomElement("el-tab-panels", ElTabPanels);
-defineCustomElement("el-tab-group", ElTabGroup);
+defineCustomElement("ce-tab-list", ElTabList);
+defineCustomElement("ce-tab-panels", ElTabPanels);
+defineCustomElement("ce-tab-group", ElTabGroup);

@@ -16,7 +16,7 @@ if (globalThis.window !== undefined) {
         }
         let form = e.target as HTMLFormElement;
         if (form && form.method === "dialog") {
-            let dialog: ElDialog | null = form.closest("el-dialog");
+            let dialog: ElDialog | null = form.closest("ce-dialog");
             if (!dialog?.beforeClose)
                 return;
             let res = dialog.beforeClose();
@@ -57,12 +57,12 @@ export class ElDialog extends BaseElement {
         this.#abortCtrl = null;
         this.#handleOverflow = null;
         this.#isOpen = true;
-        this.#transition = transition(this, () => Array.from(this.querySelectorAll('el-dialog-panel, el-dialog-backdrop')))
+        this.#transition = transition(this, () => Array.from(this.querySelectorAll('ce-dialog-panel, ce-dialog-backdrop')))
     }
     mount(signal: AbortSignal) {
         let nativeDialog = this.getNativeDialog();
         nativeDialog.removeAttribute("open");
-        nativeDialog.style.setProperty("right", "const(--el-top-layer-scrollbar-offset, 0px)");
+        nativeDialog.style.setProperty("right", "const(--ce-top-layer-scrollbar-offset, 0px)");
 
         let open = this.hasAttribute("open");
         for (let l of this.#getPopover())
@@ -74,7 +74,7 @@ export class ElDialog extends BaseElement {
                 nativeDialog.close();
         });
 
-        let dialogPanel: HTMLElement | null = this.querySelector('el-dialog-panel');
+        let dialogPanel: HTMLElement | null = this.querySelector('ce-dialog-panel');
         onDisappear(dialogPanel ?? nativeDialog, signal, () => {
             if (this.hasAttribute("open")) {
                 nativeDialog.close();
@@ -237,9 +237,9 @@ class ElDialogPanel extends BaseElement {
         });
     }
     getDialog(): ElDialog {
-        let dialog: ElDialog | null = this.closest("el-dialog");
+        let dialog: ElDialog | null = this.closest("ce-dialog");
         if (!dialog)
-            throw new Error("[ElDialogPanel] No `<el-dialog>` parent found");
+            throw new Error("[ElDialogPanel] No `<ce-dialog>` parent found");
         return dialog;
     }
 }
@@ -250,7 +250,7 @@ class ElDialogBackdrop extends BaseElement {
     }
 }
 
-defineCustomElement("el-dialog", ElDialog);
-defineCustomElement("el-dialog-panel", ElDialogPanel);
-defineCustomElement("el-dialog-backdrop", ElDialogBackdrop);
+defineCustomElement("ce-dialog", ElDialog);
+defineCustomElement("ce-dialog-panel", ElDialogPanel);
+defineCustomElement("ce-dialog-backdrop", ElDialogBackdrop);
 

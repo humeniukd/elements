@@ -1,4 +1,4 @@
-import { ElDialog } from "../el-dialog";
+import { ElDialog } from "../ce-dialog";
 
 type DialogClose = typeof HTMLDialogElement.prototype.close;
 
@@ -11,7 +11,7 @@ if (globalThis.window !== undefined) {
     Object.defineProperties(HTMLDialogElement.prototype, {
         close: {
             value(...params: DialogCloseParams) {
-                let dialog = this.closest("el-dialog");
+                let dialog = this.closest("ce-dialog");
                 if (!(dialog instanceof ElDialog)) {
                     return originalClose?.apply(this, params);
                 }
@@ -31,7 +31,7 @@ if (globalThis.window !== undefined) {
         if (!(target instanceof HTMLDialogElement) || !("command" in event) || event.command !== "close")
             return;
 
-        let dialog = target.closest("el-dialog");
+        let dialog = target.closest("ce-dialog");
 
         if (!isDialog(dialog)) return;
 

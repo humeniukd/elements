@@ -3,7 +3,7 @@ import { defineCustomElement } from "./utils.js";
 import { handleDocumentOverflow } from "./overflow";
 import { createPopover } from "./create-popover.js";
 import { getAutoId } from "./get-auto-id.js";
-import { ElOptions } from './el-options.ts';
+import { ElOptions } from './ce-options.ts';
 import { debounceByKeydownEvent } from './debounce-by-keydown-event.ts';
 import { applyWidthStyle } from './apply-width-style.ts';
 import { getTextContent } from './get-text-content.ts';
@@ -196,7 +196,7 @@ class ElAutocomplete extends BaseElement {
             }
         }, { signal });
 
-        let disabledOptions: HTMLElement[] = Array.from(optionsEl.querySelectorAll("el-option[disabled]"));
+        let disabledOptions: HTMLElement[] = Array.from(optionsEl.querySelectorAll("ce-option[disabled]"));
         for (let disabledOption of disabledOptions) {
             disabledOption.setAttribute("aria-disabled", "true");
             disabledOption.setAttribute("aria-selected", "false");
@@ -206,16 +206,16 @@ class ElAutocomplete extends BaseElement {
     getInput() {
         let input = this.querySelector("input");
         if (!input)
-            throw new Error("`<el-autocomplete>` must contain an input element.");
+            throw new Error("`<ce-autocomplete>` must contain an input element.");
         return input;
     }
     getButton() {
         return this.querySelector("button");
     }
     getOptions(): ElOptions {
-        let optionsEl: ElOptions | null = this.querySelector("el-options");
+        let optionsEl: ElOptions | null = this.querySelector("ce-options");
         if (!optionsEl)
-            throw new Error("`<el-autocomplete>` must contain a `<el-options>` element.");
+            throw new Error("`<ce-autocomplete>` must contain a `<ce-options>` element.");
         return optionsEl;
     }
     filterOptions() {
@@ -294,4 +294,4 @@ class ElAutocomplete extends BaseElement {
     }
 }
 
-defineCustomElement("el-autocomplete", ElAutocomplete);
+defineCustomElement("ce-autocomplete", ElAutocomplete);

@@ -17,14 +17,14 @@ export class ElOptions extends BaseElement {
         }
     }
     getOptionByName(name: string): ElOption | null {
-        return this.querySelector(`el-option[value="${name}"]`);
+        return this.querySelector(`ce-option[value="${name}"]`);
     }
     getItems(): ElOption[] {
-        return Array.from(this.querySelectorAll("el-option:not([disabled])"));
+        return Array.from(this.querySelectorAll("ce-option:not([disabled])"));
     }
 }
 
 export class ElOption extends BaseElement {}
 
-defineCustomElement("el-options", ElOptions);
-defineCustomElement("el-option", ElOption);
+defineCustomElement("ce-options", ElOptions);
+defineCustomElement("ce-option", ElOption);

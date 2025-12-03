@@ -11,12 +11,12 @@
   <div class="bg-white p-8 dark:bg-gray-900 dark:scheme-dark">
     <div class="mx-auto w-full max-w-xl">
       <form action="#">
-        <el-tab-group>
+        <ce-tab-group>
           <div class="group flex items-center">
-            <el-tab-list class="flex gap-2" role="tablist" aria-orientation="horizontal">
+            <ce-tab-list class="flex gap-2" role="tablist" aria-orientation="horizontal">
               <button class="rounded-md border border-transparent bg-white px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 aria-selected:bg-gray-100 aria-selected:text-gray-900 aria-selected:hover:bg-gray-200 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-white dark:aria-selected:bg-white/10 dark:aria-selected:text-white dark:aria-selected:hover:bg-white/10" id="tailwindplus-tab-0" aria-controls="tailwindplus-tab-panel-1" role="tab" tabindex="0" aria-selected="true">Write</button>
               <button class="rounded-md border border-transparent bg-white px-3 py-1.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 aria-selected:bg-gray-100 aria-selected:text-gray-900 aria-selected:hover:bg-gray-200 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-white dark:aria-selected:bg-white/10 dark:aria-selected:text-white dark:aria-selected:hover:bg-white/10" id="tailwindplus-tab-2" aria-controls="tailwindplus-tab-panel-3" role="tab" tabindex="-1" aria-selected="false">Preview</button>
-            </el-tab-list>
+            </ce-tab-list>
 
             <!-- These buttons are here simply as examples and don't actually do anything. -->
             <div class="ml-auto hidden items-center space-x-5 group-has-[*:first-child[aria-selected='true']]:flex">
@@ -47,7 +47,7 @@
               </div>
             </div>
           </div>
-          <el-tab-panels class="mt-2 block">
+          <ce-tab-panels class="mt-2 block">
             <div class="-m-0.5 rounded-lg p-0.5" role="tabpanel" tabindex="0" id="tailwindplus-tab-panel-1" aria-labelledby="tailwindplus-tab-0">
               <label for="comment" class="sr-only">Comment</label>
               <div>
@@ -59,8 +59,8 @@
                 <div class="mx-px mt-px px-3 pt-2 pb-12 text-sm text-gray-800 dark:text-gray-300">Preview content will render here.</div>
               </div>
             </div>
-          </el-tab-panels>
-        </el-tab-group>
+          </ce-tab-panels>
+        </ce-tab-group>
         <div class="mt-2 flex justify-end">
           <button type="submit" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">Post</button>
         </div>

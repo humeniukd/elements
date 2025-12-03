@@ -9,7 +9,7 @@
   </head>
   <body><div style="min-height: 460px" class="bg-gray-100 p-8 dark:bg-gray-900 dark:scheme-dark">
     <div class="mx-auto flex w-64 justify-end">
-      <el-dropdown data-default-open="" class="inline-block" style="--button-width: 98.890625px;">
+      <ce-dropdown data-default-open="" class="inline-block" style="--button-width: 98.890625px;">
         <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20" id="menu-button-1" type="button" aria-haspopup="menu" aria-controls="menu-0" aria-expanded="true" popovertarget="menu-0" tabindex="-1">
           Options
           <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="-mr-1 size-5 text-gray-400 dark:text-gray-500">
@@ -17,7 +17,7 @@
           </svg>
         </button>
 
-        <el-menu anchor="bottom end" popover="manual" class="w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:divide-white/10 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" id="menu-0" role="menu" open="" aria-labelledby="menu-button-1" tabindex="0" style="left: calc(183px + var(--anchor-offset, 0px)); top: calc(68px + var(--anchor-gap, 0px)); position: absolute;">
+        <ce-menu anchor="bottom end" popover="manual" class="w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:divide-white/10 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" id="menu-0" role="menu" open="" aria-labelledby="menu-button-1" tabindex="0" style="left: calc(183px + var(--anchor-offset, 0px)); top: calc(68px + var(--anchor-gap, 0px)); position: absolute;">
           <div class="py-1">
             <a href="#" class="group/item flex items-center px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden dark:text-gray-300 dark:focus:bg-white/5 dark:focus:text-white" id="item-2" role="menuitem" tabindex="-1">
               <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="mr-3 size-5 text-gray-400 group-focus/item:text-gray-500 dark:text-gray-500 dark:group-focus/item:text-white">
@@ -71,14 +71,14 @@
               Delete
             </a>
           </div>
-        </el-menu>
-      </el-dropdown>
+        </ce-menu>
+      </ce-dropdown>
     </div>
   </div>
   <script>
     {
       function onReady() {
-        let menus = document.querySelectorAll('el-dropdown[data-default-open] el-menu')
+        let menus = document.querySelectorAll('ce-dropdown[data-default-open] ce-menu')
         menus.forEach((menu) => {
           // Ignore next scrollIntoView call
           let originalScrollIntoView = Element.prototype.scrollIntoView
@@ -88,7 +88,7 @@
           menu.showPopover()
         })
       }
-      if (customElements.get('el-dropdown')) {
+      if (customElements.get('ce-dropdown')) {
         onReady()
       } else {
         window.addEventListener('elements:ready', onReady)

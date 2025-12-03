@@ -3,7 +3,7 @@ import { getAutoId } from './get-auto-id';
 import { type FocusCode, FocusKey, focusTo } from './focus-to';
 import { defineCustomElement } from './utils';
 import { applyWidthStyle } from './apply-width-style';
-import { ElOption, type ElOptions } from './el-options';
+import { ElOption, type ElOptions } from './ce-options';
 import { isNotHidden } from './on-disappear';
 import { SelectQuery, type SelectQueryHelper } from './select-query.ts';
 
@@ -172,7 +172,7 @@ class ElSelect extends BaseElement {
                 this.onOpen();
         }, { signal });
 
-        for (let option of Array.from(options.querySelectorAll("el-option[disabled]"))) {
+        for (let option of Array.from(options.querySelectorAll("ce-option[disabled]"))) {
             option.setAttribute("aria-disabled", "true");
             option.setAttribute("aria-selected", "false");
         }
@@ -192,13 +192,13 @@ class ElSelect extends BaseElement {
     getButton(): HTMLButtonElement {
         let button: HTMLButtonElement | null = this.querySelector("button");
         if (!button)
-            throw new Error("`<el-select>` must contain a button element.");
+            throw new Error("`<ce-select>` must contain a button element.");
         return button;
     }
     getOptions(): ElOptions {
-        let options: ElOptions | null = this.querySelector("el-options");
+        let options: ElOptions | null = this.querySelector("ce-options");
         if (!options)
-            throw new Error("`<el-select>` must contain a `<el-options>` element.");
+            throw new Error("`<ce-select>` must contain a `<ce-options>` element.");
         return options;
     }
     setSelectedOption(option: HTMLElement) {
@@ -287,7 +287,7 @@ class ElSelect extends BaseElement {
 
         selected.setAttribute("aria-selected", "true");
         try {
-            for (let content of this.querySelectorAll("el-selectedcontent"))
+            for (let content of this.querySelectorAll("ce-selectedcontent"))
                 (content as ElSelectedContent).update()
         } catch {}
     }
@@ -312,12 +312,12 @@ class ElSelectedContent extends BaseElement {
         this.replaceChildren(n);
     }
     getSelect() {
-        const select: ElSelect | null = this.closest("el-select");
+        const select: ElSelect | null = this.closest("ce-select");
         if (!select)
-            throw new Error("`<el-selectedcontent>` must be inside a `<el-select>` element.");
+            throw new Error("`<ce-selectedcontent>` must be inside a `<ce-select>` element.");
         return select;
     }
 }
 
-defineCustomElement("el-select", ElSelect);
-defineCustomElement("el-selectedcontent", ElSelectedContent);
+defineCustomElement("ce-select", ElSelect);
+defineCustomElement("ce-selectedcontent", ElSelectedContent);
