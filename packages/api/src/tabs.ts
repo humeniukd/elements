@@ -4,10 +4,10 @@ import { defineCustomElement } from './lib/utils';
 
 class TabGroup extends BaseElement {
     _mount(signal: AbortSignal) {
-        let tabList: TabList = this.getList();
-        let tabPanels: TabPanels = this.getPanels();
-        let buttons: HTMLElement[] = tabList.getTabButtons();
-        let panels = tabPanels.getPanels();
+        let tabList: TabList = this._getList();
+        let tabPanels: TabPanels = this._getPanels();
+        let buttons: HTMLElement[] = tabList._getTabButtons();
+        let panels = tabPanels._getPanels();
 
         if (buttons.length !== panels.length)
             return console.warn('[TabGroup] Mismatch count of tabs/panels');
@@ -24,18 +24,18 @@ class TabGroup extends BaseElement {
             button.setAttribute('role', 'tab');
         }
 
-        let activeTab = this.getActiveTab();
+        let activeTab = this._getActiveTab();
         if (activeTab === -1)
             activeTab = 0;
 
-        tabList.setActiveTab(activeTab);
-        tabPanels.setActivePanel(activeTab);
+        tabList._setActiveTab(activeTab);
+        tabPanels._setActivePanel(activeTab);
 
         tabList.addEventListener('keydown', (e: KeyboardEvent) => {
             switch (e.key) {
                 case 'ArrowLeft': {
                     e.preventDefault();
-                    let idx = this.getActiveTab() - 1;
+                    let idx = this._getActiveTab() - 1;
                     if (idx < 0)
                         idx = buttons.length - 1;
                     this.setActiveTab(idx);
@@ -44,7 +44,7 @@ class TabGroup extends BaseElement {
                 }
                 case 'ArrowRight': {
                     e.preventDefault();
-                    let idx = this.getActiveTab() + 1;
+                    let idx = this._getActiveTab() + 1;
                     if (idx >= buttons.length)
                         idx = 0;
                     this.setActiveTab(idx);
@@ -74,38 +74,38 @@ class TabGroup extends BaseElement {
                 this.setActiveTab(i);
             }, { signal });
     }
-    getActiveTab(): number {
+    _getActiveTab(): number {
         let tabPanels: TabPanels | null = this.querySelector('ce-tab-panels');
-        let panel = tabPanels?.getPanels().find(el => !el.hasAttribute('hidden'));
+        let panel = tabPanels?._getPanels().find(el => !el.hasAttribute('hidden'));
         if (panel)
-            return tabPanels!.getPanels().indexOf(panel);
+            return tabPanels!._getPanels().indexOf(panel);
         else
             return -1;
     }
-    getList(): TabList {
+    _getList(): TabList {
         let tabList: TabList | null = this.querySelector('ce-tab-list');
         if (!tabList)
             throw new Error('[TabGroup] No `<ce-tab-list>` element found');
         return tabList;
     }
-    getPanels(): TabPanels {
+    _getPanels(): TabPanels {
         let tabPanels: TabPanels | null = this.querySelector('ce-tab-panels');
         if (!tabPanels)
             throw new Error('[TabGroup] No `<ce-tab-panels>` element found');
         return tabPanels;
     }
     setActiveTab(idx: number) {
-        if (this.getActiveTab() === idx)
+        if (this._getActiveTab() === idx)
             return;
-        let tabList = this.getList();
-        let tabPanels = this.getPanels();
-        let buttons = tabList.getTabButtons();
+        let tabList = this._getList();
+        let tabPanels = this._getPanels();
+        let buttons = tabList._getTabButtons();
 
         if (idx < 0) return;
         if (idx >= buttons.length) return;
 
-        tabList.setActiveTab(idx);
-        tabPanels.setActivePanel(idx);
+        tabList._setActiveTab(idx);
+        tabPanels._setActivePanel(idx);
 
     }
 }
@@ -115,12 +115,12 @@ class TabList extends BaseElement {
         this.setAttribute('role', 'tablist');
         this.setAttribute('aria-orientation', 'horizontal');
     }
-    getTabButtons(): HTMLElement[] {
+    _getTabButtons(): HTMLElement[] {
         let buttons = this.querySelectorAll('button');
         return Array.from(buttons);
     }
-    setActiveTab(idx: number) {
-        this.getTabButtons().forEach((button, i) => {
+    _setActiveTab(idx: number) {
+        this._getTabButtons().forEach((button, i) => {
             let isActive = i === idx;
             button.setAttribute('tabindex', isActive ? '0' : '-1');
             button.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -130,8 +130,8 @@ class TabList extends BaseElement {
 
 class TabPanels extends BaseElement {
     _mount() {
-        const tabList = this.getTabGroup().getList();
-        let panels = this.getPanels();
+        const tabList = this._getTabGroup()._getList();
+        let panels = this._getPanels();
 
         let observer = new MutationObserver((mutations: MutationRecord[]) => {
             for (const mutation of mutations) {
@@ -139,8 +139,8 @@ class TabPanels extends BaseElement {
                 if (mutation.attributeName !== 'hidden' || target.hasAttribute(mutation.attributeName))
                     return;
                 let idx = panels.indexOf(target);
-                tabList.setActiveTab(idx);
-                this.setActivePanel(idx);
+                tabList._setActiveTab(idx);
+                this._setActivePanel(idx);
             }
         });
 
@@ -150,17 +150,17 @@ class TabPanels extends BaseElement {
             observer.observe(panel, { attributeFilter: ['hidden'], attributes: true });
         }
     }
-    getTabGroup() {
+    _getTabGroup() {
         let tabGroup: TabGroup | null = this.closest('ce-tab-group');
         if (!tabGroup)
             throw new Error('"<ce-tab-panels>" must be inside a "<ce-tab-group>" element.');
         return tabGroup;
     }
-    getPanels(): Element[] {
+    _getPanels(): Element[] {
         return Array.from(this.children);
     }
-    setActivePanel(idx: number) {
-        this.getPanels().forEach((panel, i) => {
+    _setActivePanel(idx: number) {
+        this._getPanels().forEach((panel, i) => {
             panel.toggleAttribute('hidden', i !== idx);
         });
     }

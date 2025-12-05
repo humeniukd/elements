@@ -16,10 +16,10 @@ export class Options extends BaseElement {
             }
         }
     }
-    getOptionByName(name: string): Option | null {
+    _getOptionByName(name: string): Option | null {
         return this.querySelector(`ce-option[value="${name}"]`);
     }
-    getItems(): Option[] {
+    _getItems(): Option[] {
         return Array.from(this.querySelectorAll('ce-option:not([disabled])'));
     }
 }

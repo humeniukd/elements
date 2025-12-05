@@ -20,9 +20,9 @@ class Autocomplete extends BaseElement {
     }
 
     _mount(signal: AbortSignal) {
-        let input = this.getInput();
-        let button = this.getButton();
-        let optionsEl = this.getOptions();
+        let input = this._getInput();
+        let button = this._getButton();
+        let optionsEl = this._getOptions();
         input.id ||= getAutoId('autocomplete-input');
 
         if (button)
@@ -34,12 +34,12 @@ class Autocomplete extends BaseElement {
             optionsEl,
             signal,
             () => {
-                const button = this.getButton();
+                const button = this._getButton();
                 return button ? [button] : [];
             },
-            () => this.getInput(),
-            () => this.onBeforeOpen(),
-            () => this.onBeforeClose()
+            () => this._getInput(),
+            () => this._onBeforeOpen(),
+            () => this._onBeforeClose()
         );
 
         handleDocumentOverflow(optionsEl, signal);
@@ -64,7 +64,7 @@ class Autocomplete extends BaseElement {
 
         const set = new WeakSet();
         const onAttributeChange = () => {
-            for (let item of optionsEl.getItems()) {
+            for (let item of optionsEl._getItems()) {
                 if (!set.has(item)) {
                     set.add(item);
                     item.id ||= getAutoId('option');
@@ -74,14 +74,14 @@ class Autocomplete extends BaseElement {
                     item.addEventListener('mousedown', evt => {
                         if (evt.button === 0) {
                             evt.preventDefault();
-                            this.selectOption(item);
+                            this._selectOption(item);
                         }
                     }, { signal });
-                    debounceByKeydownEvent(item, 'mouseover', signal, () => this.setActiveItem(item, false));
-                    debounceByKeydownEvent(item, 'mouseout', signal, () => this.clearActiveItem());
+                    debounceByKeydownEvent(item, 'mouseover', signal, () => this._setActiveItem(item, false));
+                    debounceByKeydownEvent(item, 'mouseout', signal, () => this._clearActiveItem());
                 }
             }
-            this.filterOptions();
+            this._filterOptions();
         }
 
         onAttributeChange();
@@ -96,7 +96,7 @@ class Autocomplete extends BaseElement {
         input.addEventListener('input', () => {
             if (input.matches(':disabled'))
                 return;
-            this.filterOptions();
+            this._filterOptions();
             if (!this.#options.length) {
                 optionsEl.hidePopover();
             } else if (!optionsEl.hasAttribute('open'))
@@ -109,7 +109,7 @@ class Autocomplete extends BaseElement {
             if (optionsEl.hasAttribute('open'))
                 optionsEl.hidePopover();
             else {
-                this.filterOptions();
+                this._filterOptions();
                 if (this.#options.length > 0)
                     optionsEl.showPopover();
             }
@@ -139,23 +139,23 @@ class Autocomplete extends BaseElement {
                     evt.preventDefault();
                     if (!optionsEl.hasAttribute('open')) {
                         if (this.#options.length === 0)
-                            this.filterOptions();
+                            this._filterOptions();
 
                         if (this.#options.length > 0)
                             optionsEl.showPopover();
                     }
-                    this.goToItem(3);
+                    this._goToItem(3);
                     break;
                 }
                 case 'ArrowUp': {
                     evt.preventDefault();
                     if (!optionsEl.hasAttribute('open')) {
                         if (this.#options.length === 0)
-                            this.filterOptions();
+                            this._filterOptions();
                         if (this.#options.length > 0)
                             optionsEl.showPopover();
                     }
-                    this.goToItem(2);
+                    this._goToItem(2);
                     break;
                 }
                 case 'Home':
@@ -163,18 +163,18 @@ class Autocomplete extends BaseElement {
                     if (!optionsEl.hasAttribute('open')) return;
                     evt.preventDefault();
                     evt.stopPropagation();
-                    return this.goToItem(0);
+                    return this._goToItem(0);
                 case 'End':
                 case 'PageDown':
                     if (!optionsEl.hasAttribute('open')) return;
                     evt.preventDefault();
                     evt.stopPropagation();
-                    return this.goToItem(1);
+                    return this._goToItem(1);
                 case 'Enter': {
-                    let active = this.getActiveItem();
+                    let active = this._getActiveItem();
                     if (active) {
                         evt.preventDefault();
-                        this.selectOption(active);
+                        this._selectOption(active);
                     }
                     if (optionsEl.hasAttribute('open')) {
                         evt.preventDefault();
@@ -203,30 +203,30 @@ class Autocomplete extends BaseElement {
         }
         signal.addEventListener('abort', () => { observer.disconnect(); });
     }
-    getInput() {
+    _getInput() {
         let input = this.querySelector('input');
         if (!input)
             throw new Error('`<ce-autocomplete>` must include an input element.');
         return input;
     }
-    getButton() {
+    _getButton() {
         return this.querySelector('button');
     }
-    getOptions(): Options {
+    _getOptions(): Options {
         let optionsEl: Options | null = this.querySelector('ce-options');
         if (!optionsEl)
             throw new Error('`<ce-autocomplete>` must include a `<ce-options>` element.');
         return optionsEl;
     }
-    filterOptions() {
-        let query = this.getInput().value.toLowerCase();
+    _filterOptions() {
+        let query = this._getInput().value.toLowerCase();
         if (this.#query !== query) {
-            this.clearActiveItem();
+            this._clearActiveItem();
             this.#query = query;
         }
         this.#options = [];
 
-        for (let option of this.getOptions().getItems()) {
+        for (let option of this._getOptions()._getItems()) {
             let value = option.getAttribute('value')?.toLowerCase() || "";
             let text = getTextContent(option)?.trim().toLowerCase() ?? "";
 
@@ -240,21 +240,21 @@ class Autocomplete extends BaseElement {
             }
         }
     }
-    getActiveItem() {
-        let active = this.getInput().getAttribute('aria-activedescendant');
+    _getActiveItem() {
+        let active = this._getInput().getAttribute('aria-activedescendant');
         return active ? document.getElementById(active) : null;
     }
-    goToItem(code: FocusCode) {
+    _goToItem(code: FocusCode) {
         if (!this.#options.length)
             return;
-        let active = this.getActiveItem();
+        let active = this._getActiveItem();
         let option = focusTo(this.#options, active, code);
         if (option)
-            this.setActiveItem(option);
+            this._setActiveItem(option);
     }
-    setActiveItem(option: HTMLElement, scrollTo = true) {
-        let input = this.getInput();
-        let active = this.getActiveItem();
+    _setActiveItem(option: HTMLElement, scrollTo = true) {
+        let input = this._getInput();
+        let active = this._getActiveItem();
         if (active !== null)
             active.setAttribute('aria-selected', 'false');
         option.setAttribute('aria-selected', 'true');
@@ -262,35 +262,35 @@ class Autocomplete extends BaseElement {
         if (scrollTo)
             option.scrollIntoView({ block: 'nearest' });
     }
-    clearActiveItem() {
-        let input = this.getInput();
-        let active = this.getActiveItem();
+    _clearActiveItem() {
+        let input = this._getInput();
+        let active = this._getActiveItem();
         if (active !== null)
             active.setAttribute('aria-selected', 'false');
         input.setAttribute('aria-activedescendant', "");
     }
-    selectOption(option: HTMLElement) {
-        let input = this.getInput();
+    _selectOption(option: HTMLElement) {
+        let input = this._getInput();
         let value = option.getAttribute('value');
         if (value) {
             input.value = value;
             input.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
             input.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-            this.getOptions().hidePopover();
+            this._getOptions().hidePopover();
         }
     }
-    onBeforeOpen() {
-        let input = this.getInput();
-        let button = this.getButton();
+    _onBeforeOpen() {
+        let input = this._getInput();
+        let button = this._getButton();
         input.setAttribute('aria-expanded', 'true');
         button?.setAttribute('aria-expanded', 'true');
     }
-    onBeforeClose() {
-        let input = this.getInput();
-        let button = this.getButton();
+    _onBeforeClose() {
+        let input = this._getInput();
+        let button = this._getButton();
         input.setAttribute('aria-expanded', 'false');
         button?.setAttribute('aria-expanded', 'false');
-        this.clearActiveItem();
+        this._clearActiveItem();
     }
 }
 

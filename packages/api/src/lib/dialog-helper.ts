@@ -12,10 +12,10 @@ if (globalThis.window !== undefined) {
         close: {
             value(...params: DialogCloseParams) {
                 let dialog = this.closest('ce-dialog');
-                if (!(dialog instanceof Dialog)) {
+                if (!(dialog instanceof Dialog))
                     return originalClose?.apply(this, params);
-                }
-                let shouldClose: boolean | Promise<boolean> = dialog.beforeClose();
+
+                let shouldClose: boolean | Promise<boolean> = dialog._beforeClose();
                 if (shouldClose === true) {
                     return originalClose?.apply(this, params);
                 }
@@ -35,7 +35,7 @@ if (globalThis.window !== undefined) {
 
         if (!isDialog(dialog)) return;
 
-        let shouldClose = dialog!.beforeClose();
+        let shouldClose = dialog!._beforeClose();
         if (shouldClose !== true) {
             event.stopImmediatePropagation();
             event.preventDefault();

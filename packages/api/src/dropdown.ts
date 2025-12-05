@@ -7,14 +7,14 @@ import { applyWidthStyle } from './lib/apply-width-style';
 import { SelectQuery, type SelectQueryHelper } from './lib/select-query';
 
 class Dropdown extends BaseElement {
-    getButton() {
+    _getButton() {
         const button = this.querySelector('button');
         if (!button)
             throw new Error('[Dropdown] No `<button>` element found');
         return button;
     }
     _mount(signal: AbortSignal) {
-        const button = this.getButton();
+        const button = this._getButton();
         button.id ||= getAutoId('dropdown-button');
         applyWidthStyle(button, '--button-width', signal, this);
         const labels: NodeListOf<HTMLLabelElement> = this.querySelectorAll('label');
@@ -33,27 +33,27 @@ class Menu extends BaseElement {
     }
     _mount(signal: AbortSignal) {
         this.#search = SelectQuery(this, {
-            role: 'menu',
-            getItems: () => this.getItems(),
-            onItemClick: () => this.hidePopover(),
-            getButton: () => this.getDropdown().getButton(),
-            onBeforeOpen: () => this.onBeforeOpen(),
-            onBeforeClose: () => this.onBeforeClose()
+            _role: 'menu',
+            _getItems: () => this._getItems(),
+            _onItemClick: () => this.hidePopover(),
+            _getButton: () => this._getDropdown()._getButton(),
+            _onBeforeOpen: () => this._onBeforeOpen(),
+            _onBeforeClose: () => this._onBeforeClose()
         }, signal);
 
-        let button: HTMLButtonElement = this.getDropdown().getButton();
+        let button: HTMLButtonElement = this._getDropdown()._getButton();
         button.addEventListener('keydown', (e: KeyboardEvent) => {
             if (button.disabled) return;
             switch (e.key) {
                 case 'ArrowDown': {
                     this.showPopover();
-                    this.goToItem(First);
+                    this._goToItem(First);
                     e.preventDefault();
                     break;
                 }
                 case 'ArrowUp': {
                     this.showPopover();
-                    this.goToItem(Last);
+                    this._goToItem(Last);
                     e.preventDefault();
                     break;
                 } //@ts-expect-error
@@ -70,7 +70,7 @@ class Menu extends BaseElement {
                         this.hidePopover();
                     else {
                         this.showPopover();
-                        this.goToItem(First);
+                        this._goToItem(First);
                     }
                     break;
                 }
@@ -91,21 +91,21 @@ class Menu extends BaseElement {
                 case 'ArrowDown':
                     e.preventDefault();
                     e.stopPropagation();
-                    return this.goToItem(Next);
+                    return this._goToItem(Next);
                 case 'ArrowUp':
                     e.preventDefault();
                     e.stopPropagation();
-                    return this.goToItem(Previous);
+                    return this._goToItem(Previous);
                 case 'Home':
                 case 'PageUp':
                     e.preventDefault();
                     e.stopPropagation();
-                    return this.goToItem(First);
+                    return this._goToItem(First);
                 case 'End':
                 case 'PageDown':
                     e.preventDefault();
                     e.stopPropagation();
-                    return this.goToItem(Last); // @ts-expect-error
+                    return this._goToItem(Last); // @ts-expect-error
                 case ' ':
                     if (!this.#search?._hasQuery()) return;
                     e.preventDefault();
@@ -114,7 +114,7 @@ class Menu extends BaseElement {
                 case 'Enter': {
                     e.preventDefault();
                     e.stopPropagation();
-                    let activeItem = this.getActiveItem();
+                    let activeItem = this._getActiveItem();
                     return activeItem ? activeItem.click() : this.hidePopover();
                 }
                 case 'Tab': {
@@ -138,54 +138,54 @@ class Menu extends BaseElement {
             }
         }, { signal });
     }
-    onBeforeOpen() {
-        let button = this.getDropdown().getButton();
+    _onBeforeOpen() {
+        let button = this._getDropdown()._getButton();
 
         let tabIndex = button.dataset.originalTabIndex;
         if (tabIndex)
             button.dataset.originalTabIndex = tabIndex;
         button.setAttribute('tabIndex', '-1');
 
-        if (this.getActiveItem() === null) {
+        if (this._getActiveItem() === null) {
             this.setAttribute('tabIndex', '0');
             setTimeout(() => this.focus({ preventScroll: true }));
         }
     }
-    onBeforeClose() {
-        let button: HTMLElement = this.getDropdown().getButton();
+    _onBeforeClose() {
+        let button: HTMLElement = this._getDropdown()._getButton();
         let tabIndex = button.dataset.originalTabIndex;
         delete button.dataset.originalTabIndex;
         if (tabIndex !== undefined)
             button.setAttribute('tabIndex', tabIndex);
         else
             button.removeAttribute('tabIndex');
-        this.getActiveItem()?.setAttribute('tabIndex', '-1');
+        this._getActiveItem()?.setAttribute('tabIndex', '-1');
     }
-    goToItem(code: FocusCode = Nothing) {
-        let items = this.getItems();
+    _goToItem(code: FocusCode = Nothing) {
+        let items = this._getItems();
         if (!items.length)
             return;
-        let prevActive: HTMLElement | null = this.getActiveItem();
+        let prevActive: HTMLElement | null = this._getActiveItem();
         let activeItem = focusTo(items, prevActive, code);
         if (activeItem)
-            this.setActiveItem(activeItem);
+            this._setActiveItem(activeItem);
     }
-    setActiveItem(item: HTMLElement) {
+    _setActiveItem(item: HTMLElement) {
         this.#search?._setFound(item);
     }
-    clearActiveItem() {
+    _clearActiveItem() {
         this.#search?._clearFound();
     }
-    getDropdown() {
+    _getDropdown() {
         let dropdown: Dropdown | null = this.closest('ce-dropdown');
         if (!dropdown)
             throw new Error('[Menu] No `<ce-dropdown>` element found');
         return dropdown;
     }
-    getItems(): HTMLElement[] {
+    _getItems(): HTMLElement[] {
         return Array.from(this.querySelectorAll(`${focusableSelector},[role="menuitem"]`));
     }
-    getActiveItem() {
+    _getActiveItem() {
         return this.#search?._getFound() || null;
     }
     _onAttributeChange(name: string, _: string, newVal: string) {

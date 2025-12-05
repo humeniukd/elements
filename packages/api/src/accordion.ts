@@ -34,12 +34,12 @@ class Accordion extends BaseElement {
             if (!supported) return;
             switch (e.command) {
                 case '--show': {
-                    this.show();
+                    this.expand();
                     e.preventDefault();
                     break;
                 }
                 case '--hide': {
-                    this.hide();
+                    this.collapse();
                     e.preventDefault();
                     break;
                 }
@@ -71,24 +71,24 @@ class Accordion extends BaseElement {
             }
             case 'open': {
                 if (newVal === null)
-                    this.hide();
+                    this.collapse();
                 else
-                    this.show();
+                    this.expand();
                 break;
             }
         }
     }
-    show() {
+    expand() {
         this.removeAttribute('hidden');
     }
-    hide() {
+    collapse() {
         this.setAttribute('hidden', '');
     }
     toggle() {
         if (this.hasAttribute('hidden'))
-            this.show();
+            this.expand();
         else
-            this.hide();
+            this.collapse();
     }
 }
 

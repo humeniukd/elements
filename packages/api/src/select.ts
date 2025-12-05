@@ -99,12 +99,12 @@ class Select extends BaseElement {
             (label as HTMLLabelElement).setAttribute('for', button.id);
 
         this.#search = SelectQuery(options, {
-            role: 'listbox',
-            getItems: () => this._getItems(),
-            onItemClick: s => this._setSelectedOption(s),
-            getButton: () => this._getButton(),
-            onBeforeOpen: () => this._onBeforeOpen(),
-            onBeforeClose: () => this._onBeforeClose()
+            _role: 'listbox',
+            _getItems: () => this._getItems(),
+            _onItemClick: s => this._setSelectedOption(s),
+            _getButton: () => this._getButton(),
+            _onBeforeOpen: () => this._onBeforeOpen(),
+            _onBeforeClose: () => this._onBeforeClose()
         }, signal);
 
         options.addEventListener('keydown', e => {
@@ -207,10 +207,10 @@ class Select extends BaseElement {
         this._getOptions().hidePopover();
     }
     _getOptionByName(name: string) {
-        return this._getOptions().getOptionByName(name);
+        return this._getOptions()._getOptionByName(name);
     }
     _getItems(): Option[] {
-        return this._getOptions().getItems();
+        return this._getOptions()._getItems();
     }
     _getActiveItem() {
         return this.#search!._getFound();

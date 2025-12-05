@@ -8,7 +8,7 @@ import { applyWidthStyle } from './lib/apply-width-style';
 import { onPopoverGroupBlur } from './lib/on-popover-group-blur';
 
 class PopoverGroup extends BaseElement {
-    getPopovers() {
+    _getPopovers() {
         return Array.from(this.querySelectorAll('* > ce-popover'));
     }
 }
@@ -18,7 +18,7 @@ class Popover extends BaseElement {
     _mount(signal: AbortSignal) {
         if (!this.id)
             throw new Error('[Popover] No popover id (ensure "id" is set)');
-        const buttons = this.getButtons();
+        const buttons = this._getButtons();
         for (let button of buttons) {
             button.id ||= getAutoId('popover-button');
             button.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -28,13 +28,13 @@ class Popover extends BaseElement {
                 }
             }, { signal });
         }
-        createPopover(this, signal, () => this.getButtons());
+        createPopover(this, signal, () => this._getButtons());
         this.setAttribute('tabindex', '-1');
         let group: HTMLElement = this;
 
         let popoverGroup: PopoverGroup | null = this.closest('ce-popover-group');
 
-        if (popoverGroup?.getPopovers().includes(this))
+        if (popoverGroup?._getPopovers().includes(this))
             group = popoverGroup;
 
         onPopoverGroupBlur(group, buttons, this, signal, () => this.hidePopover());
@@ -63,7 +63,7 @@ class Popover extends BaseElement {
             });
         }, { signal });
     }
-    getButtons(): HTMLElement[] {
+    _getButtons(): HTMLElement[] {
         let id = this.id;
         let buttons = Array.from(document.querySelectorAll<HTMLElement>(`[popovertarget="${id}"]`));
         if (!buttons)

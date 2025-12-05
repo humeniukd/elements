@@ -24,7 +24,7 @@ export class Spotlight extends BaseElement {
         let query = this._getInput().value ?? '';
 
         this.#suggestions = [];
-        for (let node of items.getItems()) {
+        for (let node of items._getItems()) {
             if (node.closest('ce-defaults'))
                 continue;
             let content = getContent(node) ?? '';
@@ -38,7 +38,7 @@ export class Spotlight extends BaseElement {
             }
         }
         for (let group of this._getGroups()) {
-            if (group.getItems().some(item => !item.hasAttribute('hidden')))
+            if (group._getItems().some(item => !item.hasAttribute('hidden')))
                 group.removeAttribute('hidden');
             else
                 group.setAttribute('hidden', '');
@@ -47,7 +47,7 @@ export class Spotlight extends BaseElement {
         if (suggestions) {
             if (query === '') {
                 suggestions.removeAttribute('hidden');
-                this.#suggestions = suggestions.getItems();
+                this.#suggestions = suggestions._getItems();
             } else
                 suggestions.setAttribute('hidden', '');
         }
@@ -121,7 +121,7 @@ export class Spotlight extends BaseElement {
 
         let set = new WeakSet();
         const onAttributeChange = (initial = false) => {
-            for (let item of items.getItems()) {
+            for (let item of items._getItems()) {
                 if (set.has(item)) continue;
                 set.add(item);
                 item.id ||= getAutoId('item');
@@ -240,12 +240,12 @@ export class Spotlight extends BaseElement {
 }
 
 class ShortcutList extends BaseElement {
-    getItems(): HTMLElement[] {
+    _getItems(): HTMLElement[] {
         return Array.from(this.querySelectorAll(`${focusableSelector},[role='option']`));
     }
 }
 class Defaults extends BaseElement {
-    getItems(): HTMLElement[] {
+    _getItems(): HTMLElement[] {
         return Array.from(this.querySelectorAll(`${focusableSelector},[role='option']`));
     }
 }
@@ -253,7 +253,7 @@ class Defaults extends BaseElement {
 class NoResults extends BaseElement {}
 class ShortcutPreview extends BaseElement {}
 class ShortcutGroup extends BaseElement {
-    getItems(): HTMLElement[] {
+    _getItems(): HTMLElement[] {
         return Array.from(this.querySelectorAll(`${focusableSelector},[role='option']`));
     }
 }

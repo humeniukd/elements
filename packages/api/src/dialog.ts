@@ -17,9 +17,9 @@ if (globalThis.window !== undefined) {
         let form = e.target as HTMLFormElement;
         if (form && form.method === 'dialog') {
             let dialog: Dialog | null = form.closest('ce-dialog');
-            if (!dialog?.beforeClose)
+            if (!dialog?._beforeClose)
                 return;
-            let res = dialog.beforeClose();
+            let res = dialog._beforeClose();
             if (res !== true) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -50,7 +50,7 @@ export class Dialog extends BaseElement {
     #handleOverflow: VoidFunction | null;
     #isOpen;
     #getPopover() {
-        return document.querySelectorAll(`[commandfor="${this.getNativeDialog().id}"]`);
+        return document.querySelectorAll(`[commandfor="${this._getNativeDialog().id}"]`);
     }
     constructor() { //@ts-expect-error
         super(...arguments);
@@ -60,7 +60,7 @@ export class Dialog extends BaseElement {
         this.#transition = transition(this, () => Array.from(this.querySelectorAll('ce-dialog-panel, ce-dialog-backdrop')))
     }
     _mount(signal: AbortSignal) {
-        let nativeDialog = this.getNativeDialog();
+        let nativeDialog = this._getNativeDialog();
         nativeDialog.removeAttribute('open');
         nativeDialog.style.setProperty('right', 'var(--top-layer-offset-scrollbar, 0px)');
 
@@ -83,7 +83,7 @@ export class Dialog extends BaseElement {
         let activeEl: HTMLElement | null = null;
         nativeDialog.addEventListener('beforetoggle', evt => {
             if (evt.newState === 'open' && evt.oldState === 'closed') {
-                this.beforeOpen();
+                this._beforeOpen();
             }
             let open = this.hasAttribute('open');
             if (evt.newState === 'open' && !open) {
@@ -126,7 +126,7 @@ export class Dialog extends BaseElement {
     }
     _onAttributeChange(name: string, _: string, newVal: string) {
         if (name !== 'open') return;
-        let nativeDialog = this.getNativeDialog();
+        let nativeDialog = this._getNativeDialog();
         for (let el of this.#getPopover())
             el.setAttribute('aria-expanded', newVal !== null ? 'true' : 'false');
 
@@ -136,13 +136,13 @@ export class Dialog extends BaseElement {
             nativeDialog.showModal();
         }
     }
-    getNativeDialog() {
+    _getNativeDialog() {
         let dialog = this.querySelector('dialog');
         if (!dialog)
             throw new Error('[Dialog] No `<dialog>` element found');
         return dialog;
     }
-    beforeOpen() {
+    _beforeOpen() {
         this.#isOpen = true;
         if (this.#abortCtrl) {
             this.#abortCtrl.abort();
@@ -154,7 +154,7 @@ export class Dialog extends BaseElement {
         if (this.#transition)
             this.#transition._start('in');
     }
-    beforeClose(): boolean | Promise<boolean> {
+    _beforeClose(): boolean | Promise<boolean> {
         if (this.#handleOverflow) {
             this.#handleOverflow();
             this.#handleOverflow = null;
@@ -170,7 +170,7 @@ export class Dialog extends BaseElement {
                 if (!signal.aborted) {
                     this.#abortCtrl = null;
                     requestAnimationFrame(() => {
-                        let nativeDialog = this.getNativeDialog();
+                        let nativeDialog = this._getNativeDialog();
                         let css = nativeDialog.style.cssText;
                         nativeDialog.style.cssText = css + 'transition-duration: 0 !important;';
                         originalClose?.apply(nativeDialog);
@@ -184,11 +184,11 @@ export class Dialog extends BaseElement {
         });
     }
     show() {
-        this.getNativeDialog().showModal();
+        this._getNativeDialog().showModal();
     }
     hide({ restoreFocus = true } = {}) {
         this.#isOpen = restoreFocus;
-        this.getNativeDialog().close();
+        this._getNativeDialog().close();
     }
 }
 
@@ -226,8 +226,8 @@ function onClickOutside(el: HTMLElement, signal: AbortSignal, callback: (e: Poin
 class DialogPanel extends BaseElement {
     _mount(signal: AbortSignal) {
         onClickOutside(this, signal, () => {
-            let dialog = this.getDialog();
-            let nativeDialog = dialog.getNativeDialog();
+            let dialog = this._getDialog();
+            let nativeDialog = dialog._getNativeDialog();
             if (!nativeDialog.hasAttribute('open'))
                 return;
 
@@ -235,7 +235,7 @@ class DialogPanel extends BaseElement {
                 nativeDialog.close();
         });
     }
-    getDialog(): Dialog {
+    _getDialog(): Dialog {
         let dialog: Dialog | null = this.closest('ce-dialog');
         if (!dialog)
             throw new Error('[DialogPanel] No `<ce-dialog>` parent found');

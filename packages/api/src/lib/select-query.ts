@@ -10,12 +10,12 @@ import { focusElement } from './focus-element';
 import { isVisible } from './on-disappear';
 
 type SelectQueryOptions = {
-    role: string
-    getItems(): HTMLElement[]
-    onItemClick(item: HTMLElement): void
-    getButton(): HTMLElement
-    onBeforeOpen: VoidFunction
-    onBeforeClose: VoidFunction
+    _role: string
+    _getItems(): HTMLElement[]
+    _onItemClick(item: HTMLElement): void
+    _getButton(): HTMLElement
+    _onBeforeOpen: VoidFunction
+    _onBeforeClose: VoidFunction
 }
 
 export type SelectQueryHelper = ReturnType<typeof SelectQuery>
@@ -28,13 +28,13 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
         typeTimeout: number | null = null,
         holdFocusTill: number | null = null;
 
-    let button = options.getButton();
+    let button = options._getButton();
 
-    el.id ||= getAutoId(options.role);
-    button.id ||= getAutoId(`${options.role}-button`);
+    el.id ||= getAutoId(options._role);
+    button.id ||= getAutoId(`${options._role}-button`);
 
-    createPopover(el, signal, () => [options.getButton()], () => options.getButton(), () => options.onBeforeOpen(), () => {
-        options.onBeforeClose();
+    createPopover(el, signal, () => [options._getButton()], () => options._getButton(), () => options._onBeforeOpen(), () => {
+        options._onBeforeClose();
         _clearFound();
         currentQuery = '';
         if (typeTimeout) {
@@ -44,16 +44,16 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
     });
     handleDocumentOverflow(el, signal);
     el.setAttribute('popover', 'manual');
-    el.setAttribute('role', options.role);
+    el.setAttribute('role', options._role);
     button.setAttribute('popovertarget', el.id);
-    button.setAttribute('aria-haspopup', options.role);
+    button.setAttribute('aria-haspopup', options._role);
 
     let set = new WeakSet;
     function onDomChange() {
-        const items = options.getItems();
+        const items = options._getItems();
         const opts = { passive: true, signal };
         
-        const role = 'menu' === options.role ? 'menuitem' : 'option';
+        const role = 'menu' === options._role ? 'menuitem' : 'option';
 
         for (let item of items) {
             if (set.has(item))
@@ -62,7 +62,7 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
             item.id ||= getAutoId('item');
             item.setAttribute('role', role);
             item.setAttribute('tabIndex', '-1');
-            item.addEventListener('click', () => options.onItemClick(item), opts);
+            item.addEventListener('click', () => options._onItemClick(item), opts);
                 
             debounceByKeydownEvent(item, 'mouseover', signal, () => _setFound(item, false));
             debounceByKeydownEvent(item, 'mouseout', signal, () => _clearFound());
@@ -101,11 +101,12 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
 
         let composedPath = e.composedPath();
         if (composedPath.includes(el)) {
-            if (null !== pointerDownMs) {
+            if (pointerDownMs) {
                 let activeItem = _getFound();
                 activeItem && activeItem.click()
-            } return
+            } return;
         }
+
         for (let target of composedPath) {
             if (!isElement(target)) continue;
             if ([
@@ -114,6 +115,7 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
                 ].includes(el.id)
             ) return;
         }
+
         el.hidePopover()
         
         pointerDownMs = null
@@ -121,9 +123,9 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
     }, { signal: signal, capture: true });
 
     button.addEventListener('click', e => {
-        if (isTouch) {
+        if (isTouch)
             isTouch = false
-        } else {
+        else {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -154,6 +156,7 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
             el.focus();
         }
     }
+
     function _getFound() {
         return currentActiveItem;
     }
@@ -162,7 +165,7 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
         if ('' === q)
             return null;
         
-        let items = options.getItems(),
+        let items = options._getItems(),
             query = q.toLowerCase(),
             currentActive = _getFound(),
             idx = currentActive ? items.indexOf(currentActive) : -1;
@@ -194,7 +197,7 @@ export function SelectQuery(el: BaseElement, options: SelectQueryOptions, signal
     }
 
     el.addEventListener('beforetoggle', e => {
-        if(
+        if (
             'open' === e.newState &&
             'closed' === e.oldState &&
             history.length > 0 &&
