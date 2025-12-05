@@ -1,0 +1,1 @@
+export const focusableSelector = ['[contentEditable=true]', '[tabindex]', 'a[href]', 'area[href]', 'button:not([disabled])', 'iframe', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])'].map(e => `${e}:not([tabindex="-1"])`).join(',');

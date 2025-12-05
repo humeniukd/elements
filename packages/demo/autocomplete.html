@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/style.css" rel="stylesheet">
+    <title>autocomplete</title>
+  </head>
+  <body><div style="min-height: 450px" class="flex justify-center bg-gray-100 p-8 dark:bg-gray-900 dark:scheme-dark">
+    <div class="mx-auto w-full max-w-xs">
+      <label for="combobox" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100">Assigned to</label>
+      <ce-autocomplete class="relative mt-2 block" style="--button-width: 35.99431610107422px; --input-width: 320px;">
+        <input id="combobox" type="text" class="block w-full rounded-md bg-white py-1.5 pr-12 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="autocomplete-listbox-1" aria-activedescendant="" autocomplete="off">
+        <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-hidden" id="autocomplete-button-0" aria-haspopup="listbox" aria-controls="autocomplete-listbox-1" aria-expanded="true" tabindex="-1" popovertarget="autocomplete-listbox-1">
+          <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 text-gray-400">
+            <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <ce-options anchor="bottom end" popover="manual" data-initial-popover-open="" class="max-h-56 w-(--input-width) overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline outline-black/5 transition-discrete [--anchor-gap:--spacing(1)] data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" id="autocomplete-listbox-1" role="listbox" open="" aria-labelledby="autocomplete-button-0" style="left: calc(175.90908813476562px + var(--anchor-offset, 0px)); top: calc(99.97868728637695px + var(--anchor-gap, 0px)); position: absolute;">
+          <ce-option value='Blake Carter' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-23" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1520785643438-5bf77931f493.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Blake Carter</span>
+            </div>
+          </ce-option>
+          <ce-option value='Hector Simmons' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-24" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1500648767791-00dcc994a43e.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Hector Simmons</span>
+            </div>
+          </ce-option>
+          <ce-option value='Fabricio Costa' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-25" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1507003211169-0a1dd7228f2d.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Fabricio Costa</span>
+            </div>
+          </ce-option>
+          <ce-option value='Jillian Spencer' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-26" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1504703395950-b89145a5425b.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Jillian Spencer</span>
+            </div>
+          </ce-option>
+          <ce-option value='Chelsea Barton' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-27" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1550525811-e5869dd03032.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Chelsea Barton</span>
+            </div>
+          </ce-option>
+          <ce-option value='Olivia Carter' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-2" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1494790108377-be9c29b29330.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Olivia Carter</span>
+            </div>
+          </ce-option>
+          <ce-option value='James Lee' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-3" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1519244703995-f4e0f30006d5.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">James Lee</span>
+            </div>
+          </ce-option>
+          <ce-option value='Sophia Turner' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-4" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1506794778202-cad84cf45f1d.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Sophia Turner</span>
+            </div>
+          </ce-option>
+          <ce-option value='Benjamin Clark' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-5" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1517841905240-472988babdf9.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Benjamin Clark</span>
+            </div>
+          </ce-option>
+          <ce-option value='Courtney Evans' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-6" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1438761681033-6461ffad8d80.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Courtney Evans</span>
+            </div>
+          </ce-option>
+          <ce-option value='Tom Harris' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-7" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1472099645785-5658abf4ff4e.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Tom Harris</span>
+            </div>
+          </ce-option>
+          <ce-option value='Jack Morgan' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-8" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1517365830460-955ce3ccd263.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Jack Morgan</span>
+            </div>
+          </ce-option>
+          <ce-option value='Leonard Foster' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-9" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1519345182560-3f2917c472ef.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Leonard Foster</span>
+            </div>
+          </ce-option>
+          <ce-option value='Floyd Grant' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-10" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1463453091185-61582044d556.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Floyd Grant</span>
+            </div>
+          </ce-option>
+          <ce-option value='Emily Parker' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-11" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1502685104226-ee32379fefbe.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Emily Parker</span>
+            </div>
+          </ce-option>
+          <ce-option value='Kristin Adams' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-12" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1500917293891-ef795e70e1f6.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Kristin Adams</span>
+            </div>
+          </ce-option>
+          <ce-option value='Emma Brooks' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-13" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1505840717430-882ce147ef2d.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Emma Brooks</span>
+            </div>
+          </ce-option>
+          <ce-option value='Alicia Reed' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-14" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1509783236416-c9ad59bae472.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Alicia Reed</span>
+            </div>
+          </ce-option>
+          <ce-option value='Jenny Cooper' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-15" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1507101105822-7472b28e22ac.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Jenny Cooper</span>
+            </div>
+          </ce-option>
+          <ce-option value='Anna Peterson' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-16" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1534528741775-53994a69daeb.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Anna Peterson</span>
+            </div>
+          </ce-option>
+          <ce-option value='Benjamin Russell' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-17" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1531427186611-ecfd6d936c79.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Benjamin Russell</span>
+            </div>
+          </ce-option>
+          <ce-option value='Jeffrey Woods' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-18" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1517070208541-6ddc4d3efbcb.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Jeffrey Woods</span>
+            </div>
+          </ce-option>
+          <ce-option value='Kathryn West' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-19" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1487412720507-e7ab37603c6f.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Kathryn West</span>
+            </div>
+          </ce-option>
+          <ce-option value='Lawrence King' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-20" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1513910367299-bce8d8a0ebf6.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Lawrence King</span>
+            </div>
+          </ce-option>
+          <ce-option value='Yvette Bailey' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-21" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1506980595904-70325b7fdd90.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Yvette Bailey</span>
+            </div>
+          </ce-option>
+          <ce-option value='Angela Moore' class="block px-3 py-2 text-gray-900 select-none aria-selected:bg-indigo-600 aria-selected:text-white dark:text-gray-200 dark:aria-selected:bg-indigo-500" id="option-22" role="option" aria-selected="false" tabindex="-1">
+            <div class="flex items-center">
+              <img src="/1501031170107-cfd33f0cbdcc.jpg" alt="" class="size-6 shrink-0 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-700 dark:outline-white/10">
+              <span class="ml-3 truncate">Angela Moore</span>
+            </div>
+          </ce-option>
+        </ce-options>
+      </ce-autocomplete>
+    </div>
+  </div>
+  <script>
+    {
+      function onReady() {
+        let popovers = document.querySelectorAll('[popover][data-initial-popover-open]')
+        popovers.forEach((popover) => popover.showPopover())
+      }
+      if (customElements.get('ce-popover')) {
+        onReady()
+      } else {
+        window.addEventListener('elements:ready', () => onReady())
+      }
+    }
+  </script>
+  <script type="module" src="/src/autocomplete.js"></script>
+  </body>
+</html>

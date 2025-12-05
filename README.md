@@ -7,7 +7,7 @@ Elements is a JavaScript UI component library that powers all the interactive be
 Elements includes the following UI components:
 
 - [Autocomplete](#autocomplete)
-- [Command palette](#command-palette)
+- [Spotlight](#spotlight)
 - [Dialog](#dialog)
 - [Disclosure](#disclosure)
 - [Dropdown menu](#dropdown-menu)
@@ -194,13 +194,13 @@ To disable the input, add the `disabled` attribute to the `<input>`:
 </ce-autocomplete>
 ```
 
-## Command palette
+## Spotlight
 
-The `<ce-command-palette>` component provides a fast, keyboard-friendly way for users to search and select from a predefined list of options. It's typically displayed inside a dialog — often triggered with a `Cmd+K` shortcut — making it ideal for building power-user features like global searches.
+The `<ce-spotlight>` component provides a fast, keyboard-friendly way for users to search and select from a predefined list of options. It's typically displayed inside a dialog — often triggered with a `Cmd+K` shortcut — making it ideal for building power-user features like global searches.
 
 ### Component API
 
-#### `<ce-command-palette>`
+#### `<ce-spotlight>`
 
 The main command component that manages filtering and coordinates with its child components
 
@@ -212,7 +212,7 @@ The main command component that manages filtering and coordinates with its child
 | Methods    | setFilterCallback(cb) | Allows you to customize the filtering behavior of the command. The callback receives an object with `query`, `node` and `content` properties, and should return a `boolean`. |
 | Methods    | reset()               | Resets the command to its initial state.                                                                                                                                     |
 
-#### `<ce-command-list>`
+#### `<ce-shortcut-list>`
 
 Contains all the command items and groups. All focusable children will be considered options.
 
@@ -220,15 +220,15 @@ Contains all the command items and groups. All focusable children will be consid
 
 Optional container for suggestion items that are shown when the input is empty.
 
-#### `<ce-command-group>`
+#### `<ce-shortcut-group>`
 
 Groups related command items together.
 
-#### `<ce-no-results>`
+#### `<ce-noresults>`
 
 Optional element shown when no items match the current query.
 
-#### `<ce-command-preview>`
+#### `<ce-shortcut-preview>`
 
 Optional preview content shown when a specific item is active.
 
@@ -240,22 +240,22 @@ Optional preview content shown when a specific item is active.
 
 #### Basic example
 
-Use the `<ce-command-palette>`, `<ce-command-list>`, `<ce-no-results>` components, along with a native `<input>`, to build a command palette:
+Use the `<ce-spotlight>`, `<ce-shortcut-list>`, `<ce-noresults>` components, along with a native `<input>`, to build a command palette:
 
 ```html
 <ce-dialog>
   <dialog>
-    <ce-command-palette>
+    <ce-spotlight>
       <input autofocus placeholder="Search…" />
 
-      <ce-command-list>
+      <ce-shortcut-list>
         <button hidden type="button">Option #1</button>
         <button hidden type="button">Option #2</button>
         <button hidden type="button">Option #3</button>
-      </ce-command-list>
+      </ce-shortcut-list>
 
-      <ce-no-results hidden>No results found.</ce-no-results>
-    </ce-command-palette>
+      <ce-noresults hidden>No results found.</ce-noresults>
+    </ce-spotlight>
   </dialog>
 </ce-dialog>
 ```
@@ -443,11 +443,11 @@ To animate the opening and closing of the dialog, target the `data-closed`, `dat
 
 ## Disclosure
 
-The `<ce-disclosure>` component provides a simple, accessible way to show and hide content — ideal for building things like toggleable accordion panels or expandable sections.
+The `<ce-accordion>` component provides a simple, accessible way to show and hide content — ideal for building things like toggleable accordion panels or expandable sections.
 
 ### Component API
 
-#### `<ce-disclosure>`
+#### `<ce-accordion>`
 
 Contains the content of the disclosure.
 
@@ -470,14 +470,14 @@ Contains the content of the disclosure.
 
 #### Basic example
 
-Use the `<ce-disclosure>` component, along with a native `<button>`, to build a disclosure:
+Use the `<ce-accordion>` component, along with a native `<button>`, to build a disclosure:
 
 ```html
 <button command="--toggle" commandfor="my-disclosure" type="button">
   What's the best thing about Switzerland?
 </button>
 
-<ce-disclosure hidden id="my-disclosure"> I don't know, but the flag is a big plus. </ce-disclosure>
+<ce-accordion hidden id="my-disclosure"> I don't know, but the flag is a big plus. </ce-accordion>
 ```
 
 #### Opening a disclosure
@@ -487,26 +487,26 @@ You can open disclosures using the `--show` [invoker command](https://developer.
 ```html
 <button command="--show" commandfor="my-disclosure" type="button">Show disclosure</button>
 
-<ce-disclosure hidden id="my-disclosure">
+<ce-accordion hidden id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 ```
 
 Alternatively you can remove the `hidden` attribute to open it:
 
 ```diff
-- <ce-disclosure hidden>
-+ <ce-disclosure>
+- <ce-accordion hidden>
++ <ce-accordion>
     <!-- ... -->
-  </ce-disclosure>
+  </ce-accordion>
 ```
 
 You can also programmatically open disclosures using the `show()` method:
 
 ```html
-<ce-disclosure hidden id="my-disclosure">
+<ce-accordion hidden id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 
 <script type="module">
   const disclosure = document.getElementById('my-disclosure')
@@ -521,26 +521,26 @@ You can close disclosures using the `--hide` [invoker command](https://developer
 ```html
 <button command="--hide" commandfor="my-disclosure" type="button">Hide disclosure</button>
 
-<ce-disclosure id="my-disclosure">
+<ce-accordion id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 ```
 
 Alternatively you can add the `hidden` attribute to close it:
 
 ```diff
-- <ce-disclosure>
-+ <ce-disclosure hidden>
+- <ce-accordion>
++ <ce-accordion hidden>
     <!-- ... -->
-  </ce-disclosure>
+  </ce-accordion>
 ```
 
 You can also programmatically close disclosures using the `hide()` method:
 
 ```html
-<ce-disclosure id="my-disclosure">
+<ce-accordion id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 
 <script type="module">
   const disclosure = document.getElementById('my-disclosure')
@@ -555,17 +555,17 @@ You can toggle disclosures using the `--toggle` [invoker command](https://develo
 ```html
 <button command="--toggle" commandfor="my-disclosure" type="button">Toggle disclosure</button>
 
-<ce-disclosure hidden id="my-disclosure">
+<ce-accordion hidden id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 ```
 
 You can also programmatically toggle disclosures using the `toggle()` method:
 
 ```html
-<ce-disclosure hidden id="my-disclosure">
+<ce-accordion hidden id="my-disclosure">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 
 <script type="module">
   const disclosure = document.getElementById('my-disclosure')
@@ -578,9 +578,9 @@ You can also programmatically toggle disclosures using the `toggle()` method:
 To animate the opening and closing of the disclosure, target the `data-closed`, `data-enter`, `data-leave`, and `data-transition` attributes with CSS to style the different stages of the transition:
 
 ```html
-<ce-disclosure hidden class="transition transition-discrete duration-1000 data-closed:opacity-0">
+<ce-accordion hidden class="transition transition-discrete duration-1000 data-closed:opacity-0">
   <!-- ... -->
-</ce-disclosure>
+</ce-accordion>
 ```
 
 ## Dropdown menu

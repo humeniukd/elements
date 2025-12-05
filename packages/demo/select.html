@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/style.css" rel="stylesheet">
+    <title>select</title>
+  </head>
+  <body><div class="flex h-112 justify-center bg-gray-100 p-8 dark:bg-gray-900 dark:scheme-dark">
+    <div class="mx-auto w-full max-w-xs">
+      <label for="select-button-0" class="block text-sm/6 font-medium text-gray-900 dark:text-white">Assigned to</label>
+      <ce-select id="select" name="selected" value="4" data-default-open="" class="mt-2 block" style="--button-width: 320px;">
+        <button type="button" class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-indigo-500" id="select-button-0" aria-haspopup="listbox" aria-controls="listbox-1" aria-expanded="true" popovertarget="listbox-1" tabindex="-1">
+          <ce-selected class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Tom Cook
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-selected>
+          <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
+            <path d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <ce-options anchor="bottom start" popover="manual" class="max-h-60 w-(--button-width) overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 [--anchor-gap:--spacing(1)] data-leave:transition data-leave:transition-discrete data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" id="listbox-1" role="listbox" open="" aria-labelledby="select-button-0" style="left: calc(175.90908813476562px + var(--anchor-offset, 0px)); top: calc(99.97868728637695px + var(--anchor-gap, 0px)); position: absolute;">
+          <ce-option value="1" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-2" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Wade Cooper
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="2" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-3" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-gray-200 dark:bg-white/25"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Arlene Mccoy
+              <span class="sr-only"> is offline</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="3" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-4" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-gray-200 dark:bg-white/25"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Devon Webb
+              <span class="sr-only"> is offline</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="4" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="true" id="item-5" role="option" tabindex="0">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Tom Cook
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="5" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-6" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-gray-200 dark:bg-white/25"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Tanya Fox
+              <span class="sr-only"> is offline</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="6" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-7" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Hellen Schmidt
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="7" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-8" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Caroline Schultz
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="8" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-9" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-gray-200 dark:bg-white/25"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Mason Heaney
+              <span class="sr-only"> is offline</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="9" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-10" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400 forced-colors:bg-[Highlight]"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Claudie Smitham
+              <span class="sr-only"> is online</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+          <ce-option value="10" class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500" aria-selected="false" id="item-11" role="option" tabindex="-1">
+            <div class="flex items-center">
+              <span aria-hidden="true" class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-gray-200 dark:bg-white/25"></span>
+              <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">
+              Emil Schaefer
+              <span class="sr-only"> is offline</span>
+            </span>
+            </div>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[ce-selectedcontent]:hidden dark:text-indigo-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
+              <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </span>
+          </ce-option>
+        </ce-options>
+      </ce-select>
+    </div>
+  </div>
+  <script>
+    {
+      function onReady() {
+        let options = document.querySelectorAll('ce-select[data-default-open] ce-options')
+        options.forEach((options) => {
+          // Ignore next scrollIntoView call
+          let originalScrollIntoView = Element.prototype.scrollIntoView
+          Element.prototype.scrollIntoView = () => {
+            Element.prototype.scrollIntoView = originalScrollIntoView
+          }
+          options.showPopover()
+        })
+      }
+      if (customElements.get('ce-select')) {
+        onReady()
+      } else {
+        window.addEventListener('elements:ready', onReady)
+      }
+    }
+  </script>
+  </body>
+  <script type="module" src="/src/select.js"></script>
+  </body>
+</html>
