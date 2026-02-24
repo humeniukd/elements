@@ -7,9 +7,9 @@
     <link href="/src/style.css" rel="stylesheet">
     <title>popover</title>
   </head>
-  <body><div style="min-height: 712px" class="bg-white dark:bg-gray-900 dark:scheme-dark">
+  <body><div style="min-height: 712px" class="bg-white dark:bg-gray-900 dark:scheme-dark relative">
     <div class="flex items-center justify-center p-8">
-      <div class="relative">
+      <div class="">
         <button popovertarget="desktop-menu-solutions" class="inline-flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 dark:text-white" id="popover-button-0" type="button" aria-haspopup="true" aria-controls="desktop-menu-solutions" aria-expanded="true">
           <span>Solutions</span>
           <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
@@ -17,7 +17,7 @@
           </svg>
         </button>
 
-        <ce-popover id="desktop-menu-solutions" anchor="bottom" popover="" data-default-open="" class="w-screen max-w-max overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in" tabindex="-1" open="" aria-labelledby="popover-button-0">
+        <ce-popover id="desktop-menu-solutions" anchor="bottom" anchor-strategy="fixed" data-default-open class="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl divide-y divide-zinc-950/10 dark:divide-white/10 bg-gray-50 dark:bg-gray-900 px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20 dark:shadow-zinc-700/20 transition transition-discrete [--anchor-gap:calc(--spacing(14)*-1)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in" tabindex="-1">
           <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm/6 shadow-lg outline-1 outline-gray-900/5 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
             <div class="p-4">
               <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">

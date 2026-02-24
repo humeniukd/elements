@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/style.css" rel="stylesheet">
+    <title>copy</title>
+  </head>
+  <body>
+  <div class="bg-white dark:bg-gray-900">
+    <div class="mx-auto flex p-6 gap-1 max-w-xl justify-center">
+      <ce-copy id="snippet">npm install @loudyo/elements</ce-copy>
+      <button command="--copy" commandfor="snippet">
+        <span class="in-data-copied:hidden">Copy</span>
+        <span class="not-in-data-copied:hidden">Copied!</span>
+      </button>
+    </div>
+  </div>
+  <script type="module" src="/src/copy.js"></script>
+  </body>
+</html>

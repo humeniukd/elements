@@ -19,7 +19,7 @@ export abstract class BaseElement extends HTMLElement {
     connectedCallback() { // @ts-expect-error
         const observedAttributes: string[] = this.constructor?._observedAttributes;
         if (Array.isArray(observedAttributes)) {
-            for (let attr of observedAttributes) {
+            for (const attr of observedAttributes) {
                 if (attr in this) continue;
 
                 Object.defineProperty(this, attr, {
@@ -27,11 +27,10 @@ export abstract class BaseElement extends HTMLElement {
                         return this.getAttribute(attr);
                     },
                     set(val) {
-                        if (val == null || val === false) {
+                        if (val == null || val === false)
                             this.removeAttribute(attr);
-                        } else {
+                        else
                             this.setAttribute(attr, val.toString());
-                        }
                     }
                 });
             }

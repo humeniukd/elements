@@ -1,6 +1,7 @@
 import './accordion'
 import './autocomplete'
 import './dialog'
+import './copy'
 import './dropdown'
 import './options'
 import './popover'

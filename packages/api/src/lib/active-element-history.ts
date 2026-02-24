@@ -27,7 +27,6 @@ onDocumentReady(() => {
         // Filter out DOM Nodes that don't exist anymore
         history = history.filter((x) => x != null && x.isConnected)
         history.splice(10) // Only keep the 10 most recent items
-        console.log('el-history', focusableElement, e.target, e.type);
     }
 
     window.addEventListener('click', handle, { capture: true })

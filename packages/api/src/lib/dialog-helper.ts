@@ -26,9 +26,9 @@ if (globalThis.window !== undefined) {
         }
     });
 
-    document.addEventListener('command', event => {
-        let target = event.target;
-        if (!(target instanceof HTMLDialogElement) || !('command' in event) || event.command !== 'close')
+    document.addEventListener('command', (e: Event) => {
+        let target = e.target;
+        if (!(target instanceof HTMLDialogElement) || !('command' in e) || e.command !== 'close')
             return;
 
         let dialog = target.closest('ce-dialog');
@@ -37,8 +37,8 @@ if (globalThis.window !== undefined) {
 
         let shouldClose = dialog!._beforeClose();
         if (shouldClose !== true) {
-            event.stopImmediatePropagation();
-            event.preventDefault();
+            e.stopImmediatePropagation();
+            e.preventDefault();
             if (shouldClose !== false) {
                 shouldClose.then(res => res ? originalClose?.apply(target) : null).catch(console.error);
             }
