@@ -1,1 +1,1 @@
-import 'ce-elements'
+import '@loudyo/elements'

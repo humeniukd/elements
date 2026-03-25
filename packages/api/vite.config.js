@@ -20,12 +20,14 @@ export default defineConfig({
         target: ['chrome111', 'firefox128', 'safari16.4'],
         rollupOptions: {
             input: {
-                index: resolve(__dirname, 'src/index.ts')
+                index: resolve(__dirname, 'src/index.ts'),
+                react: resolve(__dirname, 'src/react.ts')
             },
             output: {
                 entryFileNames: `[name].js`,
                 chunkFileNames: `[name].js`
-            }
+            },
+            external: ['react', '@loudyo/elements']
         }
     }
 })

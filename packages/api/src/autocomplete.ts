@@ -82,6 +82,8 @@ class Autocomplete extends BaseElement {
                 }
             }
             this._filterOptions();
+            if (this.#options.length && !optionsEl.hasAttribute('open'))
+                optionsEl.showPopover();
         }
 
         onAttributeChange();
